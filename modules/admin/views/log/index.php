@@ -1,0 +1,71 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel \app\models\SystemLogSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Журнал событий';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="system-log-index">
+  <div class="panel panel-default">
+    <div class="panel-heading"><?= Html::a('Очистить', false,
+            ['class' => 'btn btn-danger', 'data-method'=>'delete']) ?></div>
+    <div class="panel-body">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'options' => ['class' => 'grid-view table-responsive'],
+            'tableOptions' => ['class' => 'table table-striped table-hover'],
+            'rowOptions' => function($model) {
+                if ($model->level === 1) {
+                    return ['class' => 'danger'];
+                } elseif ($model->level === 4) {
+                    return ['class' => 'info'];
+                } else {
+                    return [];
+                }
+            },
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
+                    'attribute'=>'level',
+                    'value'=>function ($model) {
+                        return \yii\log\Logger::getLevelName($model->level);
+                    },
+                    'filter'=>[
+                        \yii\log\Logger::LEVEL_ERROR => 'error',
+                        \yii\log\Logger::LEVEL_WARNING => 'warning',
+                        \yii\log\Logger::LEVEL_INFO => 'info',
+                        \yii\log\Logger::LEVEL_TRACE => 'trace',
+                        \yii\log\Logger::LEVEL_PROFILE_BEGIN => 'profile begin',
+                        \yii\log\Logger::LEVEL_PROFILE_END => 'profile end'
+                    ]
+                ],
+                [
+                    'format' => 'raw',
+                    'attribute' => 'category',
+                    'value' => function ($model) {
+                        return Html::a($model->category, ['log/view', 'id' => $model->id]);
+                    }
+                ],
+                'prefix',
+                [
+                    'attribute' => 'log_time',
+                    'format' => 'datetime',
+                    'value' => function ($model) {
+                        return (int) $model->log_time;
+                    }
+                ],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template'=>'{delete}'
+                ]
+            ]
+        ]); ?>
+    </div>
+  </div>
+</div>

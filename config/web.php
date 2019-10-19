@@ -1,5 +1,8 @@
 <?php
 
+use app\modules\admin\Module;
+use yii\swiftmailer\Mailer;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -27,11 +30,15 @@ $config = [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'class' => Mailer::class,
+            'transport' => [
+                'class' => Swift_SmtpTransport::class,
+                'host' => $params['smtp_host'],
+                'username' => $params['smtp_username'],
+                'password' => $params['smtp_password'],
+                'port' => $params['smtp_port'],
+                'encryption' => $params['smtp_encryption'],
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -39,18 +46,42 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'except' => ['yii\web\HttpException*']
+                ],
+                [
+                    'class' => 'yii\log\DbTarget',
+                    'levels' => ['error', 'warning'],
+                    'except' => ['yii\web\HttpException*']
                 ],
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'site/index',
+                'signup' => 'site/signup',
+                'login' => 'site/login',
+                'reset-password' => 'site/reset-password',
+                'logout' => 'site/logout',
+                'page/<slug:[\w_-]+>' => 'page/view',
+                'users' => '/user',
+                '<controller>/<id:\d+>' => '<controller>/view',
+                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+                '<module>/<controller>/<action>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],
-        */
+        'assetManager' => [
+            'appendTimestamp' => true
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => ' - ',
+        ],
+    ],
+    'modules' => [
+        'admin' => Module::class
     ],
     'params' => $params,
 ];
