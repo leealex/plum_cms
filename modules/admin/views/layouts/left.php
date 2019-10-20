@@ -32,5 +32,8 @@ use yii\helpers\Html;
               ]]
           ]
       ]) ?>
+    <div class="sidebar-footer">
+      Powered by Plum
+    </div>
   </section>
 </aside>

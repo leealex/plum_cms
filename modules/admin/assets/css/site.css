@@ -5,3 +5,14 @@
 .content-wrapper {
     overflow: hidden;
 }
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    padding: 15px 5px;
+    text-align: center;
+    background: #1a2226;
+    color: #95a3a9;
+}

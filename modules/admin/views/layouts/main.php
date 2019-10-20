@@ -20,13 +20,13 @@ $bundle = admin\AdminAsset::register($this);
   <link rel="shortcut icon" href="<?= $bundle->baseUrl ?>/img/favicon.ico"/>
     <?php $this->head() ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <?php $this->beginBody() ?>
 <div class="wrapper">
     <?php
-    echo $this->render('header.php', ['user' => $user, 'adminImg' => $bundle->baseUrl]);
-    echo $this->render('left.php', ['user' => $user, 'adminImg' => $bundle->baseUrl]);
-    echo $this->render('content.php', ['content' => $content]);
+    echo $this->render('header', ['user' => $user, 'adminImg' => $bundle->baseUrl]);
+    echo $this->render('left', ['user' => $user, 'adminImg' => $bundle->baseUrl]);
+    echo $this->render('content', ['content' => $content]);
     ?>
 </div>
 
