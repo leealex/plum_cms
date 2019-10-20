@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
@@ -12,10 +13,11 @@ $bundle = admin\AdminAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="<?= Yii::$app->charset ?>"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+  <title><?= Html::encode($this->title) ?></title>
+  <link rel="shortcut icon" href="<?= $bundle->baseUrl ?>/img/favicon.ico"/>
     <?php $this->head() ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

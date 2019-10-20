@@ -1,12 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-/* @var $user \app\models\User */
+/**
+ * @var $this \yii\web\View
+ * @var $adminImg string
+ * @var $content string
+ * @var $user \app\modules\admin\models\User
+ */
 ?>
 
 <header class="main-header">

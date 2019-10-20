@@ -1,12 +1,12 @@
 <?php
 
-use app\models\User;
+use app\modules\admin\models\User;
 use rmrevin\yii\fontawesome\FA;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel \app\models\UserSearch */
+/* @var $searchModel \app\modules\admin\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Пользователи';
@@ -21,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'options' => ['class' => 'grid-view table-responsive'],
             'tableOptions' => ['class' => 'table table-striped table-hover'],
             'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-
                 'id',
                 [
                     'format' => 'raw',
@@ -33,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $html;
                     }
                 ],
-                'rating',
                 'email:email',
                 [
                     'label' => 'Роль',
@@ -55,21 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         return date('d.m.Y H:i:s', $model->updated_at);
                     }
                 ],
-                [
-                    'format' => 'raw',
-                    'attribute' => 'reminded_at',
-                    'value' => function ($model) {
-                        return $model->reminded_at ? date('d.m.Y H:i:s', $model->reminded_at) : '-';
-                    }
-                ],
-                [
-                    'format' => 'raw',
-                    'attribute' => 'logged_at',
-                    'value' => function ($model) {
-                        return Yii::$app->formatter->asRelativeTime($model->logged_at);
-                    }
-                ],
-                'ip',
                 [
                     'class' => \yii\grid\ActionColumn::class
                 ]
