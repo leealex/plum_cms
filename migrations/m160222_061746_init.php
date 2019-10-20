@@ -1,6 +1,6 @@
 <?php
 
-
+use app\modules\admin\models\User;
 use yii\db\Migration;
 
 class m160222_061746_init extends Migration
@@ -17,11 +17,22 @@ class m160222_061746_init extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
-            'role' => $this->integer(),
+            'role' => $this->integer()->defaultValue(User::ROLE_USER),
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $options);
+        $this->insert('{{%user}}', [
+            'username' => 'admin',
+            'password_hash' => Yii::$app->security->generatePasswordHash('admin'),
+            'email' => 'admin@admin.com',
+            'auth_key' => '',
+            'access_token' => '',
+            'role' => User::ROLE_ADMINISTRATOR,
+            'status' => User::STATUS_ACTIVE,
+            'created_at' => time(),
+            'updated_at' => time(),
+        ]);
 
         $this->createTable('{{%file_storage}}', [
             'id' => $this->primaryKey(),

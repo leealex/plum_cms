@@ -2,8 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-
-use app\models\Settings;
+use app\modules\admin\models\Settings;
 use Yii;
 use yii\base\Model;
 use yii\web\Controller;

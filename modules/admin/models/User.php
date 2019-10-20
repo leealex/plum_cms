@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\modules\admin\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -223,5 +223,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsAdmin()
+    {
+        return $this->role === self::ROLE_ADMINISTRATOR;
     }
 }

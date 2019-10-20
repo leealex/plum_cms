@@ -2,9 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
-
-use app\models\SystemLog;
-use app\models\SystemLogSearch;
+use app\modules\admin\models\SystemLog;
+use app\modules\admin\models\SystemLogSearch;
 use app\modules\admin\Module;
 use Yii;
 use yii\web\Controller;

@@ -23,7 +23,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\modules\admin\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -61,12 +61,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                'signup' => 'site/signup',
-                'login' => 'site/login',
-                'reset-password' => 'site/reset-password',
-                'logout' => 'site/logout',
+                'admin/login' => 'admin/dashboard/login',
                 'page/<slug:[\w_-]+>' => 'page/view',
-                'users' => '/user',
                 '<controller>/<id:\d+>' => '<controller>/view',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
                 '<module>/<controller>/<action>/<id:\d+>' => '<module>/<controller>/<action>',

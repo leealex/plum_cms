@@ -2,9 +2,8 @@
 
 namespace app\modules\admin;
 
-
-use app\models\Settings;
-use app\models\SystemLog;
+use app\modules\admin\models\Settings;
+use app\modules\admin\models\SystemLog;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
@@ -46,7 +45,13 @@ class Module extends \yii\base\Module
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['?'],
+                        'controllers' => ['admin/dashboard'],
+                        'actions' => ['login']
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
                     ]
                 ],
             ],
@@ -61,7 +66,7 @@ class Module extends \yii\base\Module
         if (!parent::beforeAction($action)) {
             return false;
         }
-        if (!Yii::$app->user->identity->isAdmin) {
+        if ($action->id !== 'login' && !Yii::$app->user->identity->isAdmin) {
             throw new ForbiddenHttpException('У вас нет доступа к этому разделу');
         }
 
@@ -78,7 +83,6 @@ class Module extends \yii\base\Module
             Yii::$app->params['settings'][$key] = $value;
         }
         Yii::$app->name = Yii::$app->params['settings']['siteName'];
-        Yii::$app->params['settings']['userRole'] = '';
     }
 
     /**

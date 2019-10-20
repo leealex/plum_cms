@@ -1,7 +1,6 @@
 <?php
-namespace app\models;
 
-
+namespace app\modules\admin\models;
 
 /**
  * This is the model class for table "system_log".

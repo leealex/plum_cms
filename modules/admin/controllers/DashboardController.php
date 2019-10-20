@@ -2,9 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\FileStorage;
-use app\models\SystemLog;
-use app\models\User;
+use app\modules\admin\models\FileStorage;
+use app\modules\admin\models\LoginForm;
+use app\modules\admin\models\SystemLog;
+use app\modules\admin\models\User;
 use vova07\imperavi\actions\GetFilesAction;
 use vova07\imperavi\actions\GetImagesAction;
 use vova07\imperavi\actions\UploadFileAction;
@@ -116,6 +117,36 @@ class DashboardController extends Controller
             'dataProvider' => $dataProvider,
             'counters' => $counters
         ]);
+    }
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionLogin()
+    {
+        $this->layout = 'main-login';
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect('/admin');
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect('/admin');
+        }
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return \yii\web\Response
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->redirect('/admin');
     }
 
     /**

@@ -2,9 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
-
-use app\models\User;
-use app\models\UserSearch;
+use app\modules\admin\models\User;
+use app\modules\admin\models\UserSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
