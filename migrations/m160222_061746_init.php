@@ -71,6 +71,21 @@ class m160222_061746_init extends Migration
         ], $options);
         $this->createIndex('idx_log_level', '{{%log}}', 'level');
         $this->createIndex('idx_log_category', '{{%log}}', 'category');
+
+        $this->createTable('{{%content}}', [
+            'id' => $this->primaryKey(),
+            'user_id' => $this->integer()->notNull(),
+            'title' => $this->string()->notNull(),
+            'text' => $this->text()->notNull(),
+            'slug' => $this->string(),
+            'position' => $this->string(),
+            'order' => $this->integer(),
+            'container' => $this->boolean(),
+            'show_title' => $this->boolean(),
+            'active' => $this->boolean(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
+        ], $options);
     }
 
     public function safeDown()
@@ -79,5 +94,6 @@ class m160222_061746_init extends Migration
         $this->dropTable('{{%file_storage}}');
         $this->dropTable('{{%settings}}');
         $this->dropTable('{{%log}}');
+        $this->dropTable('{{%content}}');
     }
 }

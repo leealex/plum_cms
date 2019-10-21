@@ -1,12 +1,12 @@
 <?php
 
-use app\models\Content;
+use app\modules\admin\models\Content;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ContentSearch */
+/* @var $searchModel \app\modules\admin\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Контент';

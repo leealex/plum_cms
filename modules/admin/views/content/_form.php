@@ -1,12 +1,13 @@
 <?php
 
-use app\models\Content;
-use dosamigos\ckeditor\CKEditor;
+use app\modules\admin\models\Content;
+use vova07\imperavi\Widget;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Content */
+/* @var $model Content */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -19,28 +20,23 @@ use yii\widgets\ActiveForm;
       </div>
       <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'text')->widget(CKEditor::class, [
-                'options' => ['rows' => 6],
-                'preset' => 'custom',
-                'clientOptions' => [
-                    'extraPlugins' => 'iframe,justify',
-                    'toolbarGroups' => [
-                        ['name' => 'document', 'groups' => ['mode', 'document', 'doctools']],
-                        ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
-                        ['name' => 'editing', 'groups' => [ 'find', 'selection', 'spellchecker']],
-                        ['name' => 'forms'],
-                        ['name' => 'basicstyles', 'groups' => ['basicstyles', 'colors','cleanup']],
-                        ['name' => 'paragraph', 'groups' => [ 'list', 'indent', 'blocks', 'align', 'bidi' ]],
-                        ['name' => 'links'],
-                        ['name' => 'insert'],
-                        '/',
-                        ['name' => 'styles'],
-                        ['name' => 'blocks'],
-                        ['name' => 'colors'],
-                        ['name' => 'tools'],
-                        ['name' => 'others'],
-                        ['name' => 'iframe'],
-                    ]
+            <?= $form->field($model, 'text')->widget(Widget::class, [
+                'settings' => [
+                    'lang' => 'ru',
+                    'minHeight' => 200,
+                    'plugins' => [
+                        'clips',
+                        'fullscreen',
+                        'table',
+                        'imagemanager',
+                        'filemanager',
+                        'video'
+
+                    ],
+                    'imageManagerJson' => Url::to(['/admin/dashboard/images-get']),
+                    'imageUpload' => Url::to(['/admin/dashboard/image-upload']),
+                    'fileManagerJson' => Url::to(['/admin/dashboard/files-get']),
+                    'fileUpload' => Url::to(['/admin/dashboard/file-upload'])
                 ]
             ]) ?>
         </div>

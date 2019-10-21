@@ -6,6 +6,7 @@ use app\modules\admin\models\FileStorage;
 use app\modules\admin\models\LoginForm;
 use app\modules\admin\models\SystemLog;
 use app\modules\admin\models\User;
+use vova07\imperavi\actions\DeleteFileAction;
 use vova07\imperavi\actions\GetFilesAction;
 use vova07\imperavi\actions\GetImagesAction;
 use vova07\imperavi\actions\UploadFileAction;
@@ -19,6 +20,9 @@ use yii\web\Controller;
  */
 class DashboardController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -46,20 +50,18 @@ class DashboardController extends Controller
     }
 
     /**
+     * Экшен сохраняет информацию в файл-менеджер о загруженном файле через форму Imperavi
+     *
      * @inheritdoc
      */
     public function afterAction($action, $result)
     {
-        if ($action->id === 'image-upload' || $action->id === 'file-upload') {
-            $fileName = substr($result['filelink'], strrpos($result['filelink'], '/') + 1);
+        if (in_array($action->id, ['image-upload', 'file-upload'])) {
+            $fileName = basename($result['filelink']);
             if ($file = $_FILES['file']) {
-                $storage = new FileStorage();
-                $storage->path = $action->path . $fileName;
-                $storage->base_url = $result['filelink'];
+                $storage = new FileStorage(['path' => $action->path . $fileName, 'base_url' => $result['filelink']]);
+                $storage->setAttributes($file);
                 $storage->name = $fileName;
-                $storage->size = $file['size'];
-                $storage->type = $file['type'];
-                $storage->created_at = time();
                 $storage->save();
             }
         }
@@ -72,15 +74,20 @@ class DashboardController extends Controller
     public function actions()
     {
         return [
-            'image-upload' => [
-                'class' => UploadFileAction::class,
-                'url' => '/uploads/images/',
-                'path' => '@app/web/uploads/images'
-            ],
             'images-get' => [
                 'class' => GetImagesAction::class,
-                'url' => '/uploads/images/',
-                'path' => '@app/web/uploads/images',
+                'url' => '/uploads/files/',
+                'path' => '@app/web/uploads/files',
+            ],
+            'files-get' => [
+                'class' => GetFilesAction::class,
+                'url' => '/uploads/files/',
+                'path' => '@app/web/uploads/files',
+            ],
+            'image-upload' => [
+                'class' => UploadFileAction::class,
+                'url' => '/uploads/files/',
+                'path' => '@app/web/uploads/files',
             ],
             'file-upload' => [
                 'class' => UploadFileAction::class,
@@ -88,19 +95,17 @@ class DashboardController extends Controller
                 'path' => '@app/web/uploads/files',
                 'uploadOnlyImage' => false
             ],
-            'files-get' => [
-                'class' => GetFilesAction::class,
+            'file-delete' => [
+                'class' => DeleteFileAction::class,
                 'url' => '/uploads/files/',
                 'path' => '@app/web/uploads/files',
-            ]
+            ],
         ];
     }
 
     /**
      * Renders the index view for the module
      * @return string
-     * @throws \yii\base\InvalidConfigException
-     * @throws \yii\di\NotInstantiableException
      */
     public function actionIndex()
     {

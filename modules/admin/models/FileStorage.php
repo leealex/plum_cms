@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "file_storage".
@@ -55,6 +56,19 @@ class FileStorage extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'updatedAtAttribute' => false
+            ]
+        ];
+    }
+
+    /**
      * @param $id int|array
      * @return null|static|static[]
      */
@@ -68,7 +82,7 @@ class FileStorage extends \yii\db\ActiveRecord
     }
 
     /**
-     * Update file path if it is not equal to base path    
+     * Update file path if it is not equal to base path
      * @return integer the number of updated files
      */
     public static function updatePath()

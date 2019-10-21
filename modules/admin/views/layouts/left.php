@@ -23,6 +23,7 @@ use yii\helpers\Html;
           'items' => [
               ['label' => 'Главная', 'icon' => 'home', 'url' => ['/admin/dashboard']],
               ['label' => 'Контент', 'encode' => false, 'icon' => 'file-text', 'url' => ['/admin/content']],
+              ['label' => 'Менеджер файлов', 'encode' => false, 'icon' => 'image', 'url' => ['/admin/file-manager']],
               ['label' => 'Пользователи', 'icon' => 'users', 'url' => ['/admin/user']],
               ['label' => 'Настройки', 'encode' => false, 'icon' => 'wrench', 'url' => ['/admin/settings']],
               ['label' => 'Система', 'icon' => 'cogs', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
