@@ -20,7 +20,7 @@ $bundle = admin\AdminAsset::register($this);
   <link rel="shortcut icon" href="<?= $bundle->baseUrl ?>/img/favicon.ico"/>
     <?php $this->head() ?>
 </head>
-<body class="hold-transition skin-blue fixed sidebar-mini">
+<body class="hold-transition skin-green fixed sidebar-mini">
 <?php $this->beginBody() ?>
 <div class="wrapper">
     <?php
