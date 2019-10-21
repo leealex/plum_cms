@@ -46,12 +46,12 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
-                    'except' => ['yii\web\HttpException*']
+                    'except' => ['yii\web\HttpException*', 'application']
                 ],
                 [
                     'class' => 'yii\log\DbTarget',
                     'levels' => ['error', 'warning'],
-                    'except' => ['yii\web\HttpException*']
+                    'except' => ['yii\web\HttpException*', 'application']
                 ],
             ],
         ],
