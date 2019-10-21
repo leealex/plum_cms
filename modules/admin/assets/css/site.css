@@ -7,12 +7,16 @@
 }
 
 .sidebar-footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     display: block;
-    width: 100%;
+    width: 230px;
     padding: 15px 5px;
     text-align: center;
     background: #1a2226;
     color: #95a3a9;
+}
+
+.sidebar-collapse .sidebar-footer {
+    display: none;
 }
