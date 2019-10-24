@@ -22,14 +22,19 @@ use yii\helpers\Html;
           'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
           'items' => [
               ['label' => 'Главная', 'icon' => 'home', 'url' => ['/admin/dashboard']],
-              ['label' => 'Контент', 'encode' => false, 'icon' => 'file-text', 'url' => ['/admin/content']],
-              ['label' => 'Менеджер файлов', 'encode' => false, 'icon' => 'image', 'url' => ['/admin/file-manager']],
+              ['label' => 'Контент', 'icon' => 'file-text', 'url' => '#', 'items' => [
+                  ['label' => 'Категории', 'icon' => 'list', 'url' => ['category/index']],
+                  ['label' => 'Статьи', 'icon' => 'file-text', 'url' => ['article/index']],
+                  ['label' => 'Новости', 'icon' => 'file-text', 'url' => ['news/index']],
+                  ['label' => 'Текстовые блоки', 'icon' => 'file-text-o', 'url' => ['text-block/index']],
+              ]],
+              ['label' => 'Менеджер файлов', 'icon' => 'image', 'url' => ['/admin/file-manager']],
               ['label' => 'Пользователи', 'icon' => 'users', 'url' => ['/admin/user']],
-              ['label' => 'Настройки', 'encode' => false, 'icon' => 'wrench', 'url' => ['/admin/settings']],
-              ['label' => 'Система', 'icon' => 'cogs', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
+              ['label' => 'Настройки', 'icon' => 'wrench', 'url' => ['/admin/settings']],
+              ['label' => 'Система', 'icon' => 'cogs', 'url' => '#', 'items' => [
                   ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                   ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                  ['label' => 'Журнал событий', 'encode' => false, 'icon' => 'tasks', 'url' => ['/admin/log']],
+                  ['label' => 'Журнал событий', 'icon' => 'tasks', 'url' => ['/admin/log']],
               ]]
           ]
       ]) ?>

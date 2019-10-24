@@ -1,13 +1,13 @@
 <?php
 
-use app\modules\admin\models\Content;
+use app\modules\admin\models\Article;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model Content */
+/* @var $model Article */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -43,8 +43,8 @@ use yii\widgets\ActiveForm;
       </div>
       <div class="row">
         <div class="col-md-4"><?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-md-4"><?= $form->field($model, 'position')
-                ->dropDownList(Content::$positions, ['prompt' => 'Выбрать ...']) ?></div>
+<!--        <div class="col-md-4">--><?//= $form->field($model, 'position')
+//                ->dropDownList(Content::$positions, ['prompt' => 'Выбрать ...']) ?><!--</div>-->
         <div class="col-md-4"><?= $form->field($model, 'order')->textInput() ?></div>
       </div>
       <div class="row">

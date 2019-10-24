@@ -2,8 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Content;
-use app\modules\admin\models\ContentSearch;
+use app\modules\admin\models\Article;
+use app\modules\admin\models\ArticleSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -35,7 +35,7 @@ class ContentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ContentSearch();
+        $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC, 'order' => SORT_DESC];
 
@@ -52,7 +52,7 @@ class ContentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Content();
+        $model = new Article();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Материал успешно сохранен');
@@ -110,12 +110,12 @@ class ContentController extends Controller
      * Finds the Content model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Content the loaded model
+     * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Content::findOne($id)) !== null) {
+        if (($model = Article::findOne($id)) !== null) {
             return $model;
         }
 

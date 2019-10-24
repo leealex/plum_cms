@@ -20,80 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-default-index">
   <div class="row">
-    <div class="col-md-4">
-      <div class="small-box bg-aqua-gradient">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Песен</p>
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-body">
+            <?= Html::a(FA::i('list') . ' Создать категорию', ['category/create'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(FA::i('file-text') . ' Создать статью', ['article/create'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(FA::i('file-text') . ' Создать новость', ['news/create'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(FA::i('file-text-o') . ' Создать текстовый блок', ['text-block/create'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(FA::i('user') . ' Создать пользователя', ['user/create'], ['class' => 'btn btn-primary']) ?>
         </div>
-        <div class="icon">
-          <i class="fa fa-music"></i>
-        </div>
-        <a href="/admin/track" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="small-box bg-red-gradient">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Исполнителей</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-user"></i>
-        </div>
-        <a href="/admin/track/artists" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="small-box bg-purple-gradient">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Альбомов</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-folder"></i>
-        </div>
-        <a href="/admin/track/albums" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="small-box bg-yellow-gradient">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Пользователей</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-group"></i>
-        </div>
-        <a href="/admin/user" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="small-box bg-blue-gradient">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Комментариев</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-pencil"></i>
-        </div>
-        <a href="/admin/comment" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="small-box bg-green-gradient">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Оценок</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-thumbs-up"></i>
-        </div>
-        <a href="/admin/rating" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-6">
       <div class="box box-primary">

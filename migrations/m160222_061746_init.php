@@ -72,17 +72,45 @@ class m160222_061746_init extends Migration
         $this->createIndex('idx_log_level', '{{%log}}', 'level');
         $this->createIndex('idx_log_category', '{{%log}}', 'category');
 
-        $this->createTable('{{%content}}', [
+        $this->createTable('{{%category}}', [
+            'id' => $this->primaryKey(),
+            'slug' => $this->string(),
+            'parent_id' => $this->integer(),
+            'title' => $this->string()->notNull(),
+            'status' => $this->boolean(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
+        ], $options);
+
+        $this->createTable('{{%article}}', [
+            'id' => $this->primaryKey(),
+            'user_id' => $this->integer()->notNull(),
+            'category_id' => $this->string(),
+            'title' => $this->string()->notNull(),
+            'text' => $this->text()->notNull(),
+            'slug' => $this->string(),
+            'status' => $this->boolean(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
+        ], $options);
+
+        $this->createTable('{{%news}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'title' => $this->string()->notNull(),
             'text' => $this->text()->notNull(),
             'slug' => $this->string(),
-            'position' => $this->string(),
-            'order' => $this->integer(),
-            'container' => $this->boolean(),
-            'show_title' => $this->boolean(),
-            'active' => $this->boolean(),
+            'status' => $this->boolean(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
+        ], $options);
+
+        $this->createTable('{{%text_block}}', [
+            'id' => $this->primaryKey(),
+            'slug' => $this->string(),
+            'title' => $this->string()->notNull(),
+            'text' => $this->text()->notNull(),
+            'status' => $this->boolean(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer()
         ], $options);
@@ -94,6 +122,9 @@ class m160222_061746_init extends Migration
         $this->dropTable('{{%file_storage}}');
         $this->dropTable('{{%settings}}');
         $this->dropTable('{{%log}}');
-        $this->dropTable('{{%content}}');
+        $this->dropTable('{{%category}}');
+        $this->dropTable('{{%article}}');
+        $this->dropTable('{{%news}}');
+        $this->dropTable('{{%text_block}}');
     }
 }
