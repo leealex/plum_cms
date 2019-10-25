@@ -1,3 +1,11 @@
+.login-page {
+    background: url(../img/acp_bg.jpg);
+}
+
+.login-box-body, .register-box-body {
+    background: RGBA(255, 255, 255, 0.7);
+}
+
 .btn-form {
     margin-top: 25px;
 }

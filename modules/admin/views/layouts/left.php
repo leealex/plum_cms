@@ -9,15 +9,6 @@ use yii\helpers\Html;
 ?>
 <aside class="main-sidebar">
   <section class="sidebar">
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="<?= $adminImg ?>/img/avatar.png" class="img-circle" alt="User Image"/>
-      </div>
-      <div class="pull-left info">
-        <p><?= $user->username ?></p>
-        <p><?= Html::a('Выход', ['/admin/dashboard/logout'], ['data-method' => 'post']) ?></p>
-      </div>
-    </div>
       <?= dmstr\widgets\Menu::widget([
           'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
           'items' => [

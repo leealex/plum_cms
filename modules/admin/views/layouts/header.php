@@ -46,15 +46,8 @@ use yii\helpers\Url;
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
-              <div class="pull-left">
-
-              </div>
-              <div class="pull-right">
-                  <?= Html::a(
-                      'Выход',
-                      ['/logout'],
-                      ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                  ) ?>
+              <div class="text-center">
+                  <?= Html::a('Выход', ['dashboard/logout'], ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']) ?>
               </div>
             </li>
           </ul>
