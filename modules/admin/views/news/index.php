@@ -15,11 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-index">
   <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-heading">
         <?= Html::a('Создать новость', ['create'], ['class' => 'btn btn-success']) ?>
     </div>
-  </div>
-  <div class="panel panel-default">
     <div class="panel-body">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
