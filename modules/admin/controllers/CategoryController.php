@@ -2,17 +2,18 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Article;
-use app\modules\admin\models\ArticleSearch;
+use app\modules\admin\models\Category;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ContentController implements the CRUD actions for Content model.
+ * Class CategoryController
+ * @package app\modules\admin\controllers
  */
-class ContentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,32 +31,28 @@ class ContentController extends Controller
     }
 
     /**
-     * Lists all Content models.
-     * @return mixed
+     * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new ArticleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->sort->defaultOrder = ['id' => SORT_DESC, 'order' => SORT_DESC];
+        $dataProvider =  $dataProvider = new ActiveDataProvider([
+            'query' => Category::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Creates a new Content model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Article();
+        $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Материал успешно сохранен');
+            Yii::$app->session->setFlash('success', 'Категория успешно сохранена');
             
             return $this->redirect(['index']);
         }
@@ -66,18 +63,16 @@ class ContentController extends Controller
     }
 
     /**
-     * Updates an existing Content model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Материал успешно сохранен');
+            Yii::$app->session->setFlash('success', 'Статья успешно сохранена');
 
             $action = Yii::$app->request->post('action', 'save');
             if ($action === 'save') {
@@ -91,11 +86,9 @@ class ContentController extends Controller
     }
 
     /**
-     * Deletes an existing Content model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
@@ -107,15 +100,13 @@ class ContentController extends Controller
     }
 
     /**
-     * Finds the Content model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Article the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return Category|null
+     * @throws NotFoundHttpException
      */
     protected function findModel($id)
     {
-        if (($model = Article::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         }
 

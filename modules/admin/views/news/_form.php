@@ -1,13 +1,14 @@
 <?php
 
-use app\modules\admin\models\Article;
+use app\modules\admin\models\News;
+use app\modules\admin\models\Category;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model Article */
+/* @var $model News */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -15,8 +16,21 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
   <div class="panel panel-default">
     <div class="panel-body">
+        <?= Html::submitButton('Применить', ['class' => 'btn btn-primary', 'name' => 'action', 'value' => 'apply']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success', 'name' => 'action', 'value' => 'save']) ?>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
       <div class="row">
-        <div class="col-md-12"><?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?></div>
+        <div class="col-md-6"><?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?></div>
+        <div class="col-md-6"><?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'status')->checkbox(['checked' => true]) ?>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -41,28 +55,9 @@ use yii\widgets\ActiveForm;
             ]) ?>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4"><?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?></div>
-<!--        <div class="col-md-4">--><?//= $form->field($model, 'position')
-//                ->dropDownList(Content::$positions, ['prompt' => 'Выбрать ...']) ?><!--</div>-->
-        <div class="col-md-4"><?= $form->field($model, 'order')->textInput() ?></div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-            <?= $form->field($model, 'container')->checkbox() ?>
 
-            <?= $form->field($model, 'show_title')->checkbox() ?>
-
-            <?= $form->field($model, 'active')->checkbox() ?>
-        </div>
-      </div>
     </div>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-        <?= Html::submitButton('Применить', ['class' => 'btn btn-primary', 'name' => 'action', 'value' => 'apply']) ?>
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success', 'name' => 'action', 'value' => 'save']) ?>
-    </div>
-  </div>
+
     <?php ActiveForm::end(); ?>
 </div>

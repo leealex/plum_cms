@@ -1,21 +1,22 @@
 <?php
 
-use app\modules\admin\models\Article;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel \app\modules\admin\models\ArticleSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/**
+ * @var $this yii\web\View
+ * @var $searchModel \app\modules\admin\models\TextBlockSearch
+ * @var $dataProvider yii\data\ActiveDataProvider
+ */
 
-$this->title = 'Контент';
+$this->title = 'Текстовые блоки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-index">
   <div class="panel panel-default">
     <div class="panel-body">
-        <?= Html::a('Создать материал', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать текстовый блок', ['create'], ['class' => 'btn btn-success']) ?>
     </div>
   </div>
   <div class="panel panel-default">
@@ -34,35 +35,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'attribute' => 'title',
                     'value' => function ($model) {
-                        return Html::a($model->title, ['content/update', 'id' => $model->id]);
+                        return Html::a($model->title, ['text-block/update', 'id' => $model->id]);
                     }
                 ],
                 'slug',
                 [
-                    'attribute' => 'position',
-                    'value' => function ($model) {
-                        return $model->position ?: 'Нет';
-                    },
-                    'filter' => Article::$positions
-                ],
-                [
-                    'attribute' => 'order',
-                    'headerOptions' => ['width' => 50],
-                    'contentOptions' => ['class' => 'text-center']
-                ],
-                [
                     'format' => 'raw',
-                    'attribute' => 'active',
+                    'attribute' => 'status',
                     'headerOptions' => ['width' => 50],
                     'contentOptions' => ['class' => 'text-center'],
                     'value' => function ($model) {
-                        return $model->active
+                        return $model->status
                             ? '<span class="label label-success">Да</span>'
                             : '<span class="label label-danger">Нет</span>';
                     },
                     'filter' => ['Нет', 'Да']
                 ],
-                'user.username',
                 [
                     'headerOptions' => ['width' => 150],
                     'attribute' => 'created_at',

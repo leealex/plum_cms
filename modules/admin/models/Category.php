@@ -80,4 +80,12 @@ class Category extends ActiveRecord
     {
         return $this->hasOne(self::class, ['id' => 'parent_id']);
     }
+
+    /**
+     * @return array
+     */
+    public static function dropdownList()
+    {
+        return self::find()->select('title')->where(['status' => true])->indexBy('id')->column();
+    }
 }

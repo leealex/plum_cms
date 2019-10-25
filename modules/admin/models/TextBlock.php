@@ -73,4 +73,15 @@ class TextBlock extends ActiveRecord
             'updated_at' => 'Изменено',
         ];
     }
+
+    /**
+     * Возвращает текстовый блок по слагу
+     * 
+     * @param $slug
+     * @return TextBlock|null
+     */
+    public static function get($slug)
+    {
+        return self::findOne(['slug' => $slug]);
+    }
 }

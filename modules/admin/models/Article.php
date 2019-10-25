@@ -77,8 +77,8 @@ class Article extends ActiveRecord
             'user_id' => 'Автор',
             'title' => 'Заголовок',
             'text' => 'Текст',
-            'slug' => 'Slug',
-            'status' => 'Активно',
+            'slug' => 'Адрес',
+            'status' => 'Опубликовано',
             'created_at' => 'Создано',
             'updated_at' => 'Изменено',
         ];

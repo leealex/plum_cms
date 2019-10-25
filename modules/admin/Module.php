@@ -2,9 +2,11 @@
 
 namespace app\modules\admin;
 
+use app\modules\admin\models\Article;
 use app\modules\admin\models\Settings;
 use app\modules\admin\models\SystemLog;
 use Yii;
+use yii\data\Sort;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 
@@ -26,6 +28,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         Yii::configure(Yii::$app, require(__DIR__ . '/config.php'));
+        Yii::$container->set(Sort::class, ['defaultOrder' => ['id' => SORT_DESC]]);
 
         $this->layout = 'main';
         $this->defaultRoute = 'dashboard';
