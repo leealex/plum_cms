@@ -2,6 +2,7 @@
 
 use app\modules\admin\models\News;
 use app\modules\admin\models\Category;
+use app\modules\admin\widgets\ButtonGroup;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -29,7 +30,10 @@ use yii\widgets\ActiveForm;
       </div>
       <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'status')->checkbox(['checked' => true]) ?>
+            <?= $form->field($model, 'status')->widget(ButtonGroup::class, [
+                'default' => 1,
+                'items' => [['label' => 'Опубликовано', 'value' => 1], ['label' => 'Не опубликовано', 'value' => 0]]
+            ])->label(false) ?>
         </div>
       </div>
       <div class="row">

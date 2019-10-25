@@ -3,7 +3,7 @@
 use app\modules\admin\widgets\Settings;
 
 /* @var $this yii\web\View */
-/* @var $settings \app\models\Settings[] */
+/* @var $settings \app\modules\admin\models\Settings[] */
 
 $this->title = 'Настройки';
 $this->params['breadcrumbs'][] = $this->title;

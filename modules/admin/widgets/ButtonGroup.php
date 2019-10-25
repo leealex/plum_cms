@@ -4,6 +4,7 @@
  * @package app\components
  * @version 1.1.0
  */
+
 namespace app\modules\admin\widgets;
 
 use yii\base\InvalidConfigException;
@@ -76,9 +77,6 @@ class ButtonGroup extends \yii\widgets\InputWidget
     public function run()
     {
         $options = ['class' => 'btn-group', 'data-toggle' => 'buttons'];
-        if (!empty($this->options)) {
-            $options = array_merge($options, $this->options);
-        }
         $html = Html::beginTag('div', $options);
         foreach ($this->items as $item) {
             if (!is_array($item)) {

@@ -54,10 +54,10 @@ class Settings extends Widget
             $rows .= Html::tag('tr', $key . $value . $comment . $delete);
         }
         $table = Html::tag('table', $rows, ['class' => 'settings-table table table-condensed']);
-        $button = '<p>' . Html::submitButton('Сохранить', ['class' => 'btn btn-success']) . '</p>';
-        $addRow = '<p>' . Html::button('Добавить настройку', ['id' => 'add-row', 'class' => 'btn btn-primary']) . '</p>';
+        $button = Html::submitButton('Сохранить', ['class' => 'btn btn-success']);
+        $addRow = Html::button('Добавить настройку', ['id' => 'add-row', 'class' => 'btn btn-primary']);
 
-        echo Html::tag('div', $table . $addRow . $button, ['class' => 'col-md-12']);
+        echo Html::tag('div', $table . '<p>' . $addRow . ' ' . $button . '</p>', ['class' => 'col-md-12']);
 
         ActiveForm::end();
     }

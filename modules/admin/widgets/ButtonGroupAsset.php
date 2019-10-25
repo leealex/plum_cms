@@ -5,14 +5,15 @@ namespace app\modules\admin\widgets;
 use yii\web\View;
 use yii\web\AssetBundle;
 
+/**
+ * Class ButtonGroupAsset
+ * @package app\modules\admin\widgets
+ */
 class ButtonGroupAsset extends AssetBundle
 {
     public $sourcePath = '@admin/widgets/button-group';
     public $css = [
         'button-group.css'
-    ];
-    public $js = [
-
     ];
     public $jsOptions = [
         'position' => View::POS_END
