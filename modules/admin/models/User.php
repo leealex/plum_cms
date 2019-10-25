@@ -44,6 +44,10 @@ class User extends ActiveRecord implements IdentityInterface
         self::ROLE_ADMINISTRATOR => 'Администратор',
         self::ROLE_USER => 'Пользователь'
     ];
+    /**
+     * @var
+     */
+    public $tmp_password;
 
     /**
      * @inheritdoc
@@ -78,7 +82,24 @@ class User extends ActiveRecord implements IdentityInterface
 
             ['role', 'default', 'value' => self::ROLE_USER],
             ['role', 'in', 'range' => array_flip(self::$roles)],
+
+            ['tmp_password', 'string']
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($this->tmp_password) {
+            $this->setPassword($this->tmp_password);
+        }
+
+        return true;
     }
 
     /**

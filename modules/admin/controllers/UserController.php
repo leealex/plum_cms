@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\modules\admin\models\SignupForm;
 use app\modules\admin\models\User;
 use app\modules\admin\models\UserSearch;
 use Yii;
@@ -56,6 +57,21 @@ class UserController extends Controller
     }
 
     /**
+     * @return string|\yii\web\Response
+     * @throws \Exception
+     */
+    public function actionCreate()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Пользователь успешно сохранен');
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('create', ['model' => $model]);
+    }
+
+    /**
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -65,9 +81,8 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['update', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', ['model' => $model]);
         }

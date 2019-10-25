@@ -14,6 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
   <div class="panel panel-default">
+    <div class="panel-heading">
+        <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
+    </div>
     <div class="panel-body">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -53,7 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ],
                 [
-                    'class' => \yii\grid\ActionColumn::class
+                    'class' => \yii\grid\ActionColumn::class,
+                    'visibleButtons' => [
+                        'delete' => function ($model) {
+                            return $model->id !== 1;
+                        }
+                    ]
                 ]
             ],
         ]); ?>
