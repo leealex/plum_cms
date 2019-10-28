@@ -7,7 +7,7 @@ use yii\helpers\Html;
 $user = Yii::$app->user->identity;
 
 dmstr\web\AdminLteAsset::register($this);
-$bundle = admin\AdminAsset::register($this);
+admin\AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -17,15 +17,15 @@ $bundle = admin\AdminAsset::register($this);
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
-  <link rel="shortcut icon" href="<?= $bundle->baseUrl ?>/img/favicon.ico"/>
+  <link rel="shortcut icon" href="/images/cp/favicon.ico"/>
     <?php $this->head() ?>
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <?php $this->beginBody() ?>
 <div class="wrapper">
     <?php
-    echo $this->render('header', ['user' => $user, 'adminImg' => $bundle->baseUrl]);
-    echo $this->render('left', ['user' => $user, 'adminImg' => $bundle->baseUrl]);
+    echo $this->render('header', ['user' => $user]);
+    echo $this->render('left');
     echo $this->render('content', ['content' => $content]);
     ?>
 </div>

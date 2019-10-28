@@ -139,9 +139,7 @@ class DashboardController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect('/admin');
         }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return $this->render('login', ['model' => $model, ]);
     }
 
     /**

@@ -7,45 +7,21 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \app\modules\admin\models\LoginForm */
 
-$this->title = 'Sign In';
-
-$fieldOptions1 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
-];
-
-$fieldOptions2 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
-];
+$this->title = 'Панель управления';
 ?>
 
 <div class="login-box">
+  <img src="/images/cp/logo.png" alt="Plum" class="img-responsive">
   <div class="login-box-body">
-    <p class="text-center lead">Панель управления</p>
 
-      <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+      <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-      <?= $form
-          ->field($model, 'username', $fieldOptions1)
-          ->label(false)
-          ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+      <?= $form->field($model, 'username')->textInput(['placeholder' => 'Логин или Email'])->label(false) ?>
 
-      <?= $form
-          ->field($model, 'password', $fieldOptions2)
-          ->label(false)
-          ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+      <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-    <div class="row">
-      <!-- /.col -->
-      <div class="col-xs-4">
-          <?= Html::submitButton('Войти', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
-      </div>
-      <!-- /.col -->
-    </div>
+      <?= Html::submitButton('Войти', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
 
       <?php ActiveForm::end(); ?>
-
   </div>
-  <!-- /.login-box-body -->
-</div><!-- /.login-box -->
+</div>

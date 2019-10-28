@@ -30,13 +30,13 @@ use yii\helpers\Url;
         </li>
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="<?= $adminImg ?>/img/avatar.png" class="user-image" alt="User Image"/>
+            <img src="/images/cp/avatar.png" class="user-image" alt="User Image"/>
             <span class="hidden-xs"><?= $user->username ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="<?= $adminImg ?>/img/avatar.png" class="img-circle"
+              <img src="/images/cp/avatar.png" class="img-circle"
                    alt="User Image"/>
               <p>
                   <?= $user->username ?>
