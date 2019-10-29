@@ -1,9 +1,12 @@
 .login-page {
-    background: url(/images/cp/cp_bg.png);
+    background-color: #000;
+    background-image: url('https://picsum.photos/1920/1080?blur=7');
+    background-size: cover;
 }
 
 .login-box-body, .register-box-body {
-    background: none;
+    background: RGBA(255,255,255,0.2);
+    border: 1px solid #a9a9a9;
 }
 
 .btn-form {

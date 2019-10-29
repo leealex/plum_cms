@@ -11,7 +11,7 @@ $this->title = 'Панель управления';
 ?>
 
 <div class="login-box">
-  <img src="/images/cp/logo.png" alt="Plum" class="img-responsive">
+  <img src="/images/cp/cp_logo.png" alt="Plum" class="img-responsive">
   <div class="login-box-body">
 
       <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
