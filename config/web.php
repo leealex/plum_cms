@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\admin\Module;
+use yii\helpers\ArrayHelper;
 use yii\swiftmailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
@@ -61,7 +62,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '' => 'site/index',
+                '/' => 'site/index',
                 'admin/login' => 'admin/dashboard/login',
                 'page/<slug:[\w_-]+>' => 'page/view',
                 '<controller>/<id:\d+>' => '<controller>/view',
@@ -95,5 +96,11 @@ if (YII_ENV_DEV) {
         'allowedIPs' => ['127.0.0.1', '10.10.10.1'],
     ];
 }
+
+if (file_exists(__DIR__ . '/web.local.php')) {
+    $config = ArrayHelper::merge($config, require __DIR__ . '/web.local.php');
+}
+
+return $config;
 
 return $config;

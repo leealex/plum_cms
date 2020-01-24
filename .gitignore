@@ -1,3 +1,4 @@
 /vendor/
 .idea
-/web/uploads/
+/config/web.local.php
+/config/db.local.php
