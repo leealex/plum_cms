@@ -16,7 +16,7 @@ class TextBlockSearch extends TextBlock
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
             [['title', 'text', 'slug'], 'safe'],
         ];
     }
@@ -43,7 +43,6 @@ class TextBlockSearch extends TextBlock
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

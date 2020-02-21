@@ -4,8 +4,10 @@ use admin\AdminAsset;
 use dmstr\web\AdminLteAsset;
 use yii\helpers\Html;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+/**
+ * @var $this \yii\web\View
+ * @var $content string
+ */
 
 AdminLteAsset::register($this);
 AdminAsset::register($this);
@@ -21,11 +23,8 @@ AdminAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body class="login-page">
-
 <?php $this->beginBody() ?>
-
 <?= $content ?>
-
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -6,10 +6,6 @@ use app\modules\admin\models\FileStorage;
 use app\modules\admin\models\LoginForm;
 use app\modules\admin\models\SystemLog;
 use app\modules\admin\models\User;
-use vova07\imperavi\actions\DeleteFileAction;
-use vova07\imperavi\actions\GetFilesAction;
-use vova07\imperavi\actions\GetImagesAction;
-use vova07\imperavi\actions\UploadFileAction;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -50,60 +46,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * Экшен сохраняет информацию в файл-менеджер о загруженном файле через форму Imperavi
-     *
-     * @inheritdoc
-     */
-    public function afterAction($action, $result)
-    {
-        if (in_array($action->id, ['image-upload', 'file-upload'])) {
-            $fileName = basename($result['filelink']);
-            if ($file = $_FILES['file']) {
-                $storage = new FileStorage(['path' => $action->path . $fileName, 'base_url' => $result['filelink']]);
-                $storage->setAttributes($file);
-                $storage->name = $fileName;
-                $storage->save();
-            }
-        }
-        return parent::afterAction($action, $result);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'images-get' => [
-                'class' => GetImagesAction::class,
-                'url' => '/uploads/files/',
-                'path' => '@app/web/uploads/files',
-            ],
-            'files-get' => [
-                'class' => GetFilesAction::class,
-                'url' => '/uploads/files/',
-                'path' => '@app/web/uploads/files',
-            ],
-            'image-upload' => [
-                'class' => UploadFileAction::class,
-                'url' => '/uploads/files/',
-                'path' => '@app/web/uploads/files',
-            ],
-            'file-upload' => [
-                'class' => UploadFileAction::class,
-                'url' => '/uploads/files/',
-                'path' => '@app/web/uploads/files',
-                'uploadOnlyImage' => false
-            ],
-            'file-delete' => [
-                'class' => DeleteFileAction::class,
-                'url' => '/uploads/files/',
-                'path' => '@app/web/uploads/files',
-            ],
-        ];
-    }
-
-    /**
      * Renders the index view for the module
      * @return string
      */
@@ -139,7 +81,7 @@ class DashboardController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect('/admin');
         }
-        return $this->render('login', ['model' => $model, ]);
+        return $this->render('login', ['model' => $model,]);
     }
 
     /**

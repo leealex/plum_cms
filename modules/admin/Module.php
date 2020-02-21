@@ -19,6 +19,29 @@ class Module extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'app\modules\admin\controllers';
+    /**
+     * @inheritdoc
+     */
+    public $controllerMap = [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\Controller',
+            'access' => ['@'],
+            'disabledCommands' => ['netmount'],
+            'roots' => [
+                [
+                    'baseUrl' => '@web',
+                    'basePath' => '@webroot',
+                    'path' => 'uploads',
+                    'name' => 'Uploads'
+                ],
+                [
+                    'class' => 'mihaildev\elfinder\volume\UserPath',
+                    'path' => 'uploads/user_{id}',
+                    'name' => 'My Uploads'
+                ]
+            ]
+        ]
+    ];
 
     /**
      * @inheritdoc

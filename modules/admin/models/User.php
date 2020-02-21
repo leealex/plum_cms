@@ -88,6 +88,21 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Логин',
+            'status' => 'Статус',
+            'role' => 'Роль',
+            'created_at' => 'Создано',
+            'updated_at' => 'Изменено',
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function beforeSave($insert)

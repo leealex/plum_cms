@@ -7,10 +7,10 @@ use yii\widgets\ActiveForm;
 /**
  * @var $this yii\web\View
  * @var $form yii\widgets\ActiveForm
+ * @var $model User
  */
 
 $options = $model->id === 1 ? ['disabled' => 'disabled'] : [];
-
 ?>
 
 <div class="user-form">

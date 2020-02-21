@@ -10,10 +10,8 @@
  */
 
 use rmrevin\yii\fontawesome\FA;
-use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ListView;
-use yii\widgets\Pjax;
 
 $this->title = 'Панель управления';
 $this->params['breadcrumbs'][] = $this->title;

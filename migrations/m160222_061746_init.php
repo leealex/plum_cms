@@ -22,6 +22,7 @@ class m160222_061746_init extends Migration
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $options);
+
         $this->insert('{{%user}}', [
             'username' => 'admin',
             'password_hash' => Yii::$app->security->generatePasswordHash('admin'),
@@ -33,16 +34,6 @@ class m160222_061746_init extends Migration
             'created_at' => time(),
             'updated_at' => time(),
         ]);
-
-        $this->createTable('{{%file_storage}}', [
-            'id' => $this->primaryKey(),
-            'base_url' => $this->string(1024)->notNull(),
-            'path' => $this->string(1024)->notNull(),
-            'type' => $this->string(),
-            'size' => $this->integer(),
-            'name' => $this->string(),
-            'created_at' => $this->integer()->notNull()
-        ], $options);
 
         $this->createTable('{{%settings}}', [
             'key' => $this->string(128)->notNull(),
@@ -119,7 +110,6 @@ class m160222_061746_init extends Migration
     public function safeDown()
     {
         $this->dropTable('{{%user}}');
-        $this->dropTable('{{%file_storage}}');
         $this->dropTable('{{%settings}}');
         $this->dropTable('{{%log}}');
         $this->dropTable('{{%category}}');

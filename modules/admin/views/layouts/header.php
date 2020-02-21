@@ -12,8 +12,7 @@ use yii\helpers\Url;
 ?>
 
 <header class="main-header">
-    <?= Html::a('<span class="logo-mini">P</span><span class="logo-lg">Plum CMS</span>', ['/admin'],
-        ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">P</span><span class="logo-lg">Plum CMS</span>', ['/admin'], ['class' => 'logo']) ?>
   <nav class="navbar navbar-static-top" role="navigation">
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
       <span class="sr-only">Toggle navigation</span>

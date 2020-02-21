@@ -2,7 +2,6 @@
 
 namespace app\modules\admin\models;
 
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -16,18 +15,9 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at', 'role'], 'integer'],
             [['username', 'password', 'email', 'auth_key', 'access_token'], 'safe'],
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
     }
 
     /**
@@ -48,19 +38,16 @@ class UserSearch extends User
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'role' => $this->role
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
-//            ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'access_token', $this->access_token]);

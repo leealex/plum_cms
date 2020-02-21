@@ -1,13 +1,15 @@
 <?php
 
 use app\modules\admin\models\User;
+use app\modules\admin\widgets\GridView;
 use rmrevin\yii\fontawesome\FA;
-use yii\grid\GridView;
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $searchModel \app\modules\admin\models\UserSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/**
+ * @var $this yii\web\View
+ * @var $searchModel \app\modules\admin\models\UserSearch
+ * @var $dataProvider yii\data\ActiveDataProvider
+ */
 
 $this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,10 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'options' => ['class' => 'grid-view table-responsive'],
-            'tableOptions' => ['class' => 'table table-striped table-hover'],
             'columns' => [
-                'id',
                 [
                     'format' => 'raw',
                     'attribute' => 'username',
@@ -36,10 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'email:email',
                 [
-                    'label' => 'Роль',
+                    'attribute' => 'role',
                     'value' => function ($model) {
                         return User::$roles[$model->role];
-                    }
+                    },
+                    'filter' =>User::$roles
                 ],
                 [
                     'format' => 'raw',
@@ -54,16 +54,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => function ($model) {
                         return date('d.m.Y H:i:s', $model->updated_at);
                     }
-                ],
-                [
-                    'class' => \yii\grid\ActionColumn::class,
-                    'visibleButtons' => [
-                        'delete' => function ($model) {
-                            return $model->id !== 1;
-                        }
-                    ]
                 ]
-            ],
+            ]
         ]); ?>
     </div>
   </div>

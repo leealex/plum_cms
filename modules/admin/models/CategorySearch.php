@@ -5,10 +5,10 @@ namespace app\modules\admin\models;
 use yii\data\ActiveDataProvider;
 
 /**
- * Class NewsSearch
+ * Class CategorySearch
  * @package app\modules\admin\models
  */
-class NewsSearch extends News
+class CategorySearch extends Category
 {
     /**
      * {@inheritdoc}
@@ -16,8 +16,7 @@ class NewsSearch extends News
     public function rules()
     {
         return [
-            [['user_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'text', 'slug'], 'safe'],
+            [['title', 'slug', 'parent_id', 'status', 'created_at', 'updated_at'], 'safe']
         ];
     }
 
@@ -30,7 +29,7 @@ class NewsSearch extends News
      */
     public function search($params)
     {
-        $query = News::find();
+        $query = Category::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -43,14 +42,13 @@ class NewsSearch extends News
         }
 
         $query->andFilterWhere([
-            'user_id' => $this->user_id,
+            'parent_id' => $this->parent_id,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'text', $this->text])
             ->andFilterWhere(['like', 'slug', $this->slug]);
 
         return $dataProvider;

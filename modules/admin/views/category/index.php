@@ -1,12 +1,11 @@
 <?php
 
-use yii\grid\ActionColumn;
+use app\modules\admin\widgets\GridView;
 use yii\helpers\Html;
-use yii\grid\GridView;
 
 /**
  * @var $this yii\web\View
- * @var $searchModel \app\modules\admin\models\ArticleSearch
+ * @var $searchModel \app\modules\admin\models\CategorySearch
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
@@ -21,13 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
-            'options' => ['class' => 'grid-view table-responsive'],
-            'tableOptions' => ['class' => 'table table-striped table-hover'],
+            'filterModel' => $searchModel,
             'columns' => [
-                [
-                    'attribute' => 'id',
-                    'headerOptions' => ['width' => 50]
-                ],
                 [
                     'format' => 'raw',
                     'attribute' => 'title',
@@ -64,12 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => function ($model) {
                         return date('d.m.Y H:i', $model->updated_at);
                     }
-                ],
-                [
-                    'class' => ActionColumn::class,
-                    'visibleButtons' => ['view' => false, 'update' => false]
                 ]
-            ],
+            ]
         ]); ?>
     </div>
   </div>

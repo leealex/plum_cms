@@ -21,6 +21,7 @@ use yii\db\ActiveRecord;
  * @property int $updated_at
  *
  * @property User $user
+ * @property Category $category
  */
 class Article extends ActiveRecord
 {
@@ -90,5 +91,13 @@ class Article extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 }

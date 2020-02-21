@@ -1,16 +1,17 @@
 <?php
 
 use app\modules\admin\models\News;
-use app\modules\admin\models\Category;
 use app\modules\admin\widgets\ButtonGroup;
-use vova07\imperavi\Widget;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 
-/* @var $this yii\web\View */
-/* @var $model News */
-/* @var $form yii\widgets\ActiveForm */
+/**
+ * @var $this yii\web\View
+ * @var $model News
+ * @var $form yii\widgets\ActiveForm
+ */
 ?>
 
 <div class="content-form">
@@ -35,30 +36,13 @@ use yii\widgets\ActiveForm;
       </div>
       <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'text')->widget(Widget::class, [
-                'settings' => [
-                    'lang' => 'ru',
-                    'minHeight' => 200,
-                    'plugins' => [
-                        'clips',
-                        'fullscreen',
-                        'table',
-                        'imagemanager',
-                        'filemanager',
-                        'video'
-
-                    ],
-                    'imageManagerJson' => Url::to(['/admin/dashboard/images-get']),
-                    'imageUpload' => Url::to(['/admin/dashboard/image-upload']),
-                    'fileManagerJson' => Url::to(['/admin/dashboard/files-get']),
-                    'fileUpload' => Url::to(['/admin/dashboard/file-upload'])
-                ]
+            <?= $form->field($model, 'text')->widget(CKEditor::class, [
+                'editorOptions' => ElFinder::ckeditorOptions('admin/elfinder', ['preset' => 'standard']),
             ]) ?>
         </div>
       </div>
 
     </div>
   </div>
-
     <?php ActiveForm::end(); ?>
 </div>

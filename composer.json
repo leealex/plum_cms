@@ -25,7 +25,8 @@
     "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
     "dmstr/yii2-adminlte-asset": "2.*",
     "rmrevin/yii2-fontawesome": "~2.17",
-    "vova07/yii2-imperavi-widget": "*"
+    "mihaildev/yii2-elfinder": "*",
+    "mihaildev/yii2-ckeditor": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

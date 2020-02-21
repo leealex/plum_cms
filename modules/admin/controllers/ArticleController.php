@@ -38,10 +38,7 @@ class ArticleController extends Controller
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
     /**

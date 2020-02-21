@@ -2,6 +2,7 @@
 
 /**
  * @var $this yii\web\View
+ * @var $model \app\modules\admin\models\News
  */
 
 $this->title = 'Редактирование: ' . $model->title;

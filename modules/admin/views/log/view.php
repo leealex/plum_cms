@@ -3,8 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model \app\models\SystemLog */
+/**
+ * @var $this yii\web\View
+ * @var $model \app\modules\admin\models\SystemLog
+ */
 
 $this->title = 'Ошибка #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Журнал событий', 'url' => ['index']];

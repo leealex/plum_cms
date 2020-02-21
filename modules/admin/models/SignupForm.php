@@ -60,7 +60,8 @@ class SignupForm extends User
         return [
             'username' => 'Логин (имя пользователя)',
             'email' => 'E-mail',
-            'tmp_password' => 'Пароль'
+            'tmp_password' => 'Пароль',
+            'role' => 'Роль'
         ];
     }
 }

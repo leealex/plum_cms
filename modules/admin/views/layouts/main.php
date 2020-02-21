@@ -1,13 +1,18 @@
 <?php
 
+use admin\AdminAsset;
+use dmstr\web\AdminLteAsset;
 use yii\helpers\Html;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+/**
+ * @var $this \yii\web\View
+ * @var $content string
+ */
+
 $user = Yii::$app->user->identity;
 
-dmstr\web\AdminLteAsset::register($this);
-admin\AdminAsset::register($this);
+AdminLteAsset::register($this);
+AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

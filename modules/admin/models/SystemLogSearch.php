@@ -15,7 +15,7 @@ class SystemLogSearch extends SystemLog
     public function rules()
     {
         return [
-            [['id', 'log_time', 'message'], 'integer'],
+            [['log_time', 'message'], 'integer'],
             [['category', 'prefix', 'level'], 'safe'],
         ];
     }
@@ -35,7 +35,6 @@ class SystemLogSearch extends SystemLog
             return $dataProvider;
         }
         $query->andFilterWhere([
-            'id' => $this->id,
             'level' => $this->level,
             'log_time' => $this->log_time,
             'message' => $this->message,

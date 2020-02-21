@@ -3,8 +3,8 @@
 namespace app\modules\admin\controllers;
 
 use app\modules\admin\models\Category;
+use app\modules\admin\models\CategorySearch;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,13 +35,10 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider =  $dataProvider = new ActiveDataProvider([
-            'query' => Category::find(),
-        ]);
+        $searchModel = new CategorySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
     /**

@@ -99,8 +99,9 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        if ($id != 1) {
-            $this->findModel($id)->delete();
+        $user = $this->findModel($id);
+        if (!$user->isAdmin) {
+            $user->delete();
         }
 
         return $this->redirect(['index']);
