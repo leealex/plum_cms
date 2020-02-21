@@ -2,12 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\FileStorage;
 use app\modules\admin\models\LoginForm;
 use app\modules\admin\models\SystemLog;
 use app\modules\admin\models\User;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
@@ -51,19 +49,12 @@ class DashboardController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => SystemLog::find(),
-            'pagination' => ['pageSize' => 5],
-            'sort' => ['defaultOrder' => ['log_time' => SORT_DESC]]
-        ]);
+        $log = SystemLog::find()->where(['read' => false])->andWhere(['not', ['level' => 4]])->all();
         $counters = [
             'users' => User::find()->count()
         ];
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'counters' => $counters
-        ]);
+        return $this->render('index', ['log' => $log, 'counters' => $counters]);
     }
 
     /**

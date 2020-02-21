@@ -36,5 +36,5 @@ use dmstr\widgets\Alert;
 </div>
 
 <footer class="main-footer">
-  Copyright &copy; <?= date('Y') ?><a href="http://plumy.ru">Plum</a> - Разработка и сопровождение сайтов.
+  Copyright &copy; <?= date('Y') ?> <a href="http://plumy.ru">Plum</a> - Разработка и сопровождение сайтов.
 </footer>

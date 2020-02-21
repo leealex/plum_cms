@@ -116,7 +116,7 @@ class Module extends \yii\base\Module
      */
     public static function loadLogData()
     {
-        $messages = SystemLog::find()->where(['read' => false]);
+        $messages = SystemLog::find()->where(['read' => false])->andWhere(['not', ['level' => 4]]);
 
         Yii::$app->params['logCount'] = $messages->count();
         Yii::$app->params['logData'] = $messages->limit(5)->all();
