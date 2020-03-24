@@ -27,11 +27,13 @@ class SystemLogSearch extends SystemLog
      */
     public function search($params)
     {
-        $query = SystemLog::find()->where(['not in', 'level', [\yii\log\Logger::LEVEL_INFO]]);
+        $query = SystemLog::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        if (!($this->load($params) && $this->validate())) {
+        $this->load($params);
+
+        if (!$this->validate()) {
             return $dataProvider;
         }
         $query->andFilterWhere([

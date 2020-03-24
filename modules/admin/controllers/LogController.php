@@ -6,6 +6,7 @@ use app\modules\admin\models\SystemLog;
 use app\modules\admin\models\SystemLogSearch;
 use app\modules\admin\Module;
 use Yii;
+use yii\log\Logger;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,6 +36,7 @@ class LogController extends Controller
     public function actionIndex()
     {
         $searchModel = new SystemLogSearch();
+        $searchModel->level = Logger::LEVEL_ERROR;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         if (strcasecmp(Yii::$app->request->method, 'delete') == 0) {
             SystemLog::deleteAll($dataProvider->query->where);
