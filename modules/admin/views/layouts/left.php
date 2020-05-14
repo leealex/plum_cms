@@ -12,6 +12,7 @@
           'items' => [
               ['label' => 'Главная', 'icon' => 'home', 'url' => ['dashboard/index']],
               ['label' => 'Контент', 'icon' => 'file-text', 'url' => '#', 'items' => [
+                  ['label' => 'Меню', 'icon' => 'list', 'url' => ['menu/index'], 'active' => $this->context->id === 'menu'],
                   ['label' => 'Категории', 'icon' => 'list', 'url' => ['category/index'], 'active' => $this->context->id === 'category'],
                   ['label' => 'Статьи', 'icon' => 'file-text', 'url' => ['article/index'], 'active' => $this->context->id === 'article'],
                   ['label' => 'Новости', 'icon' => 'file-text', 'url' => ['news/index'], 'active' => $this->context->id === 'news'],
