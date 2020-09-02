@@ -76,12 +76,36 @@ class TextBlock extends ActiveRecord
 
     /**
      * Возвращает текстовый блок по слагу
-     * 
+     *
      * @param $slug
      * @return TextBlock|null
      */
     public static function get($slug)
     {
-        return self::findOne(['slug' => $slug]);
+        return self::findOne(['slug' => $slug, 'status' => true]);
+    }
+
+    /**
+     * @param $slug
+     * @return string|null
+     */
+    public static function getText($slug)
+    {
+        if ($block = self::get($slug)) {
+            return $block->text;
+        }
+        return null;
+    }
+
+    /**
+     * @param $slug
+     * @return string|null
+     */
+    public static function getTitle($slug)
+    {
+        if ($block = self::get($slug)) {
+            return $block->title;
+        }
+        return null;
     }
 }

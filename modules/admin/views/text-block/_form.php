@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
       <div class="row">
         <div class="col-md-12">
             <?= $form->field($model, 'text')->widget(CKEditor::class, [
-                'editorOptions' => ElFinder::ckeditorOptions('admin/elfinder', ['preset' => 'basic']),
+                'editorOptions' => ElFinder::ckeditorOptions('admin/elfinder', ['preset' => 'standard', 'extraAllowedContent' => 'iframe[*]']),
             ]) ?>
         </div>
       </div>

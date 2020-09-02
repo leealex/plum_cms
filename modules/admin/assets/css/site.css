@@ -1,5 +1,5 @@
 .login-page {
-    background-color: #000;
+    background-color: #ffffff;
     background-image: url('../images/bg-light.jpg');
     background-size: cover;
 }
@@ -42,4 +42,8 @@
 
 .sidebar-collapse .sidebar-footer {
     display: none;
+}
+
+.text-light {
+    color: #b3b3b3;
 }

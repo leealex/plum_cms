@@ -33,11 +33,6 @@ class Module extends \yii\base\Module
                     'basePath' => '@webroot',
                     'path' => 'uploads',
                     'name' => 'Uploads'
-                ],
-                [
-                    'class' => 'mihaildev\elfinder\volume\UserPath',
-                    'path' => 'uploads/user_{id}',
-                    'name' => 'My Uploads'
                 ]
             ]
         ]

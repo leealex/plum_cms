@@ -16,8 +16,9 @@
                   ['label' => 'Категории', 'icon' => 'list', 'url' => ['category/index'], 'active' => $this->context->id === 'category'],
                   ['label' => 'Статьи', 'icon' => 'file-text', 'url' => ['article/index'], 'active' => $this->context->id === 'article'],
                   ['label' => 'Новости', 'icon' => 'file-text', 'url' => ['news/index'], 'active' => $this->context->id === 'news'],
-                  ['label' => 'Текстовые блоки', 'icon' => 'file-text-o', 'url' => ['text-block/index'], 'active' => $this->context->id === 'text-block'],
+
               ]],
+              ['label' => 'Текстовые блоки', 'icon' => 'file-text-o', 'url' => ['/admin/text-block']],
               ['label' => 'Менеджер файлов', 'icon' => 'image', 'url' => ['/admin/file-manager']],
               ['label' => 'Пользователи', 'icon' => 'users', 'url' => ['/admin/user']],
               ['label' => 'Настройки', 'icon' => 'wrench', 'url' => ['/admin/settings']],
@@ -25,6 +26,7 @@
                   ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                   ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                   ['label' => 'Журнал событий', 'icon' => 'tasks', 'url' => ['/admin/log']],
+                  ['label' => 'CLI Commands', 'encode' => false, 'icon' => 'terminal', 'url' => ['/admin/cli']],
               ]]
           ]
       ]) ?>

@@ -83,7 +83,7 @@ class GridView extends \yii\grid\GridView
                     return Html::a(FA::i('trash'), ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-xs btn-danger',
                         'title' => 'Удалить',
-                        'data-confirm' => 'Are you sure you want to delete this item?',
+                        'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?',
                         'data-method' => 'post'
                     ]);
                 }

@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\admin\models\Category;
 use app\modules\admin\widgets\GridView;
 use yii\helpers\Html;
 
@@ -29,12 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a($model->title, ['article/update', 'id' => $model->id]);
                     }
                 ],
-                'slug',
+                [
+                    'format' => 'raw',
+                    'attribute' => 'slug',
+                    'value' => function ($model) {
+                        return '<span class="text-light">/page/</span>' . $model->slug;
+                    }
+                ],
                 [
                     'attribute' => 'category_id',
                     'value' => function ($model) {
-                        return $model->category->title;
-                    }
+                        return $model->categoryName;
+                    },
+                    'filter' => Category::dropdownList()
                 ],
                 'user.username:text:Автор',
                 [

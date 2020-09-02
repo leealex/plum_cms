@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="icon">
           <i class="fa fa-file-text"></i>
         </div>
-          <?= Html::a('Все аккаунты <i class="fa fa-arrow-circle-right"></i>', ['space/index'], ['class' => 'small-box-footer']); ?>
+          <?= Html::a('Все статьи <i class="fa fa-arrow-circle-right"></i>', ['article/index'], ['class' => 'small-box-footer']); ?>
       </div>
     </div>
 
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="icon">
           <i class="fa fa-file-text"></i>
         </div>
-        <a href="#" class="small-box-footer">Список <i class="fa fa-arrow-circle-right"></i></a>
+          <?= Html::a('Все новости <i class="fa fa-arrow-circle-right"></i>', ['news/index'], ['class' => 'small-box-footer']); ?>
       </div>
     </div>
 
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="icon">
           <i class="fa fa-exclamation-triangle"></i>
         </div>
-        <a href="/admin/log" class="small-box-footer">Открыть журнал <i class="fa fa-arrow-circle-right"></i></a>
+          <?= Html::a('Открыть журнал <i class="fa fa-arrow-circle-right"></i>', ['log/index'], ['class' => 'small-box-footer']); ?>
       </div>
     </div>
 

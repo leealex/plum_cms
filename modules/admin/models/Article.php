@@ -100,4 +100,27 @@ class Article extends ActiveRecord
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
+
+    /**
+     * @return mixed|string
+     */
+    public function getCategoryName()
+    {
+        /** @var Category $category */
+        if ($category = $this->getCategory()->one()) {
+            return $category->title;
+        }
+        return null;
+    }
+
+    /**
+     * Список статей по слагу категории
+     *
+     * @param string $slug
+     * @return Article[]
+     */
+    public static function getByCategory($slug)
+    {
+        return self::find()->joinWith('category c')->where(['c.slug' => $slug])->all();
+    }
 }

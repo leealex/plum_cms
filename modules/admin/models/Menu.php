@@ -87,7 +87,7 @@ class Menu extends \yii\db\ActiveRecord
      */
     public static function getParents()
     {
-        return self::find()->where(['parent_id' => null])->all();
+        return self::find()->where(['parent_id' => null, 'status' => true])->all();
     }
 
     /**
